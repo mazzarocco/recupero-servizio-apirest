@@ -1,0 +1,49 @@
+<section class="page-heading">
+  <div>
+    <p class="eyebrow">JSONPlaceholder / Posts</p>
+    <h1>Esplora i post</h1>
+    <p class="intro">Cerca tra i contenuti disponibili o aggiungi un nuovo post.</p>
+  </div>
+  <strong class="count">{{ filteredPosts().length }} post visualizzati</strong>
+</section>
+
+<section class="toolbar" aria-label="Filtra post">
+  <label for="search">Cerca</label>
+  <input id="search" type="search" [ngModel]="search()" (ngModelChange)="search.set($event)" placeholder="Titolo o testo..." />
+</section>
+
+@if (loading()) {
+  <p class="status loading" role="status">Caricamento dei post...</p>
+} @else if (error()) {
+  <p class="status error" role="alert">{{ error() }}</p>
+} @else {
+  <div class="post-grid">
+    @for (post of filteredPosts(); track post.id) {
+      <article class="post-card">
+        <span class="post-number">#{{ post.id }}</span>
+        <h2>{{ post.title }}</h2>
+        <p>{{ post.body }}</p>
+        <a [routerLink]="['/posts', post.id]">Leggi il post <span aria-hidden="true">→</span></a>
+      </article>
+    } @empty {
+      <p class="status">Nessun post corrisponde alla ricerca.</p>
+    }
+  </div>
+}
+
+<section class="create-card">
+  <div>
+    <p class="eyebrow">POST</p>
+    <h2>Crea un nuovo post</h2>
+  </div>
+  <form (ngSubmit)="createPost()">
+    <label for="title">Titolo</label>
+    <input id="title" name="title" [(ngModel)]="newPost.title" required />
+    <label for="body">Testo</label>
+    <textarea id="body" name="body" [(ngModel)]="newPost.body" rows="3" required></textarea>
+    @if (submitError()) {
+      <p class="form-error" role="alert">{{ submitError() }}</p>
+    }
+    <button type="submit" [disabled]="submitting()">{{ submitting() ? 'Invio...' : 'Pubblica post' }}</button>
+  </form>
+</section>

@@ -1,0 +1,29 @@
+<a class="back-link" routerLink="/posts">← Torna ai post</a>
+
+@if (loading()) {
+  <p class="status loading" role="status">Caricamento del post...</p>
+} @else if (error()) {
+  <section class="status error" role="alert">
+    <h1>Post non disponibile</h1>
+    <p>{{ error() }}</p>
+  </section>
+} @else if (post(); as currentPost) {
+  <article class="detail-card">
+    <p class="eyebrow">POST #{{ currentPost.id }} · UTENTE {{ currentPost.userId }}</p>
+    <h1>{{ currentPost.title }}</h1>
+    <p class="detail-body">{{ currentPost.body }}</p>
+  </article>
+}
+
+<nav class="post-navigation" aria-label="Navigazione tra i post">
+  @if (currentId() > 1) {
+    <a [routerLink]="['/posts', currentId() - 1]">← Precedente</a>
+  } @else {
+    <span class="disabled">← Precedente</span>
+  }
+  @if (currentId() < 100) {
+    <a [routerLink]="['/posts', currentId() + 1]">Successivo →</a>
+  } @else {
+    <span class="disabled">Successivo →</span>
+  }
+</nav>
