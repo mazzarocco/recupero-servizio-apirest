@@ -39,10 +39,10 @@ input, textarea { border: 1px solid #d9ded8; border-radius: 6px; padding: 11px 1
 .toolbar input { flex: 1; max-width: 380px; }
 input:focus, textarea:focus { border-color: #c5673d; outline: 2px solid #f1d0c0; }
 .post-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 18px; }
-.post-card { background: white; border: 1px solid #e8e4de; border-radius: 10px; display: flex; flex-direction: column; min-height: 260px; padding: 24px; transition: transform .2s, box-shadow .2s; }
+.post-card { background: white; border: 1px solid #e8e4de; border-radius: 10px; display: flex; flex-direction: column; min-height: 260px; min-width: 0; padding: 24px; transition: transform .2s, box-shadow .2s; }
 .post-card:hover { box-shadow: 0 12px 30px #24372d12; transform: translateY(-3px); }
 .post-card h2 { font-size: 1.3rem; line-height: 1.2; text-transform: capitalize; }
-.post-card p { color: #657269; font-size: .92rem; line-height: 1.65; }
+.post-card p { color: #657269; font-size: .92rem; line-height: 1.65; overflow-wrap: anywhere; white-space: normal; }
 .post-card a, .back-link, .post-navigation a { color: #c5673d; font-weight: 700; font-size: .85rem; margin-top: auto; text-decoration: none; }
 .post-number { color: #a4afa8; font-size: .78rem; margin-bottom: 18px; }
 .status { border-radius: 8px; padding: 24px; }
