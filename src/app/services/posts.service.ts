@@ -1,5 +1,8 @@
+// HttpClient esegue richieste API e HttpErrorResponse rappresenta una risposta HTTP fallita.
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+// Injectable registra la classe nel sistema di dependency injection; signal gestisce lo stato reattivo.
 import { Injectable, signal } from '@angular/core';
+// Observable rappresenta il risultato asincrono; gli operatori RxJS trasformano o osservano i dati.
 import { Observable, map, of, tap, throwError } from 'rxjs';
 import { NewPost, Post } from '../models/post';
 
